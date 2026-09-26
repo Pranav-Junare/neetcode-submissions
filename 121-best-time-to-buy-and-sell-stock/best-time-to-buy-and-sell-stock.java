@@ -4,10 +4,7 @@ class Solution {
         int currMin=prices[0];
 
         for(int i=1;i<prices.length;i++){
-            int tempMin=Math.min(currMin, prices[i]);
-
-            currMin=tempMin;
-
+            currMin=Math.min(currMin, prices[i]);
             profit=Math.max(profit, prices[i]-currMin);
 
         }
