@@ -1,6 +1,7 @@
 class Solution {
     public int numTrees(int n) {
-        int[] memo=new int[n+1];
+        int []memo=new int[n+1];
+
         memo[0]=1;
         memo[1]=1;
 
