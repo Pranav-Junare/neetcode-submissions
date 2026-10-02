@@ -1,7 +1,6 @@
 class Solution {
     public int numTrees(int n) {
-        int []memo=new int[n+1];
-
+        int memo[]=new int[n+1];
         memo[0]=1;
         memo[1]=1;
 
@@ -10,6 +9,7 @@ class Solution {
             for(int root=1;root<=nodes;root++){
                 int left=root-1;
                 int right=nodes-root;
+
                 total+=memo[left]*memo[right];
             }
             memo[nodes]=total;
