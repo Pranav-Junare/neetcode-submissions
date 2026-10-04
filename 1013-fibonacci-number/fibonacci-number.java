@@ -6,6 +6,6 @@ class Solution {
     
         if(n<=1)return n;
         if(memo[n]!=-1)return memo[n];
-        return fib(n-1)+fib(n-2);
+        return memo[n]=fib(n-1)+fib(n-2);
     }
 }
