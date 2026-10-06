@@ -20,14 +20,14 @@ class Solution {
         dfs(root);
         return sb.toString();
     }
-
     void dfs(TreeNode root){
-        if(root==null) return;
+        if(root==null)return;
+
         sb.append(root.val);
         if(root.left==null && root.right==null)return;
         
         sb.append("(");
-        if(root.left!=null)dfs(root.left);
+        if(root.left!=null) dfs(root.left);
         sb.append(")");
 
         if(root.right!=null){
