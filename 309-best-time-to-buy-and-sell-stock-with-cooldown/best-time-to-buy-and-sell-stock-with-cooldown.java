@@ -1,36 +1,29 @@
 class Solution {
     int [][] dp;
-    public int maxProfit(int[] prices) {
+    public int maxProfit(int[] prices) { 
         dp=new int[prices.length][2];
-
         for(int i=0;i<prices.length;i++){
             dp[i][0]=-1;
             dp[i][1]=-1;
         }
-
-        return dfs(prices,0,false);
+        return dfs(prices, 0, false);
     }
-
-    int dfs(int[]prices, int day, boolean holding){
-        if(day>=prices.length)return 0;
+    int dfs(int[]p, int day, boolean holding){
+        if(day>=p.length)return 0;
 
         int state=holding?1:0;
         if(dp[day][state]!=-1)return dp[day][state];
 
         int res;
         if(holding){
-            // Option 1, do nothing
-            int hold=dfs(prices, day+1,true);
-
-            // Option 2, sell
-            int sell=prices[day]+dfs(prices,day+2,false);
-            res= Math.max(sell,hold);
+            int wait=dfs(p, day+1, true);
+            int sell=p[day]+dfs(p,day+2,false);
+            res=Math.max(sell,wait);
         }
         else{
-            int buy=-prices[day]+dfs(prices, day+1, true);
-            int wait=dfs(prices, day+1,false);
-
-            res= Math.max(buy, wait);
+            int skip=dfs(p, day+1, false);
+            int buy=-p[day]+dfs(p,day+1,true);
+            res=Math.max(skip,buy);
         }
         dp[day][state]=res;
         return res;
