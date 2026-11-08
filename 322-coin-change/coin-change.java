@@ -1,5 +1,5 @@
 class Solution {
-    int memo[];
+    int [] memo;
     public int coinChange(int[] coins, int amount) {
         memo=new int[amount+1];
         Arrays.fill(memo, -1);
@@ -7,22 +7,20 @@ class Solution {
         int res=dfs(amount, coins);
         return res==Integer.MAX_VALUE?-1:res;
     }
-    int dfs(int remaining, int[]coins){
 
-        if(remaining==0)return 0;
-        if(remaining<0)return Integer.MAX_VALUE;
+    int dfs(int remain, int[] coins){
+        if(remain < 0)return Integer.MAX_VALUE;
+        if(remain==0)return 0;
 
-        if(memo[remaining]!=-1)return memo[remaining];
-        
-        int minimum=Integer.MAX_VALUE;
+        if(memo[remain]!=-1)return memo[remain];
 
-        for(int i=0;i<coins.length;i++){
-            int res=dfs(remaining-coins[i], coins);
+        int min=Integer.MAX_VALUE;
 
-            if(res!=Integer.MAX_VALUE) minimum=Math.min(minimum,res+1);
-
+        for(int coin:coins){
+            int res=dfs(remain-coin, coins);
+            if(res!=Integer.MAX_VALUE) min=Math.min(min,res+1);
         }
-        memo[remaining]=minimum;
-        return memo[remaining];
+        memo[remain]=min;
+        return memo[remain];
     }
 }
