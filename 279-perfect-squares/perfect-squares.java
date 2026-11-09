@@ -3,9 +3,11 @@ class Solution {
     public int numSquares(int n) {
         memo=new int[n+1];
         Arrays.fill(memo, -1);
+
         int res=dfs(n);
         return res;
     }
+
     int dfs(int remaining){
         if(remaining==0)return 0;
         if(remaining<0)return Integer.MAX_VALUE;
@@ -16,7 +18,7 @@ class Solution {
 
         for(int i=1;i*i<=remaining;i++){
             int res=dfs(remaining-(i*i));
-            if(res!=Integer.MAX_VALUE) min=Math.min(res+1,min);
+            if(res!=Integer.MAX_VALUE) min=Math.min(min,res+1);
         }
         memo[remaining]=min;
         return memo[remaining];
