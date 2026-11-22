@@ -11,7 +11,7 @@ class Solution {
             }
             StringBuilder sb=new StringBuilder();
             for(int i=0;i<26;i++){
-                sb.append(count[i]).append("#");
+                sb.append(count[i]+" ");
             }
             String key=sb.toString();
 
